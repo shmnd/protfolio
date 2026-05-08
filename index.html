@@ -117,7 +117,7 @@
           <div class="row about-info wide" data-animate-block>
             <div class="about-info__text">
               <h2 class="text-pretitle with-line" data-animate-el>About</h2>
-               <p class="attention-getter" data-animate-el style="margin-left: 220px;">
+              <p class="attention-getter about-intro-text" data-animate-el>
                 I’m a skilled <strong>Python Django Full-Stack Developer</strong> with a strong background in building dynamic, scalable, and secure web applications. 
                 I specialize in crafting robust backend systems using Python and Django, and delivering clean, responsive frontends with HTML, CSS, JavaScript, and modern tools.
                 <br /><br />
@@ -131,7 +131,6 @@
                 href="cv/shamnad.pdf"
                 target="_blank"
                 class="btn btn--medium u-fullwidth"
-                style="margin-left: 100px;"
                 data-animate-el
               >
                 Download CV
@@ -247,6 +246,32 @@
             .click-here-button{
               display: none;
             }
+
+            .about-intro-text {
+              margin-left: 220px;
+              max-width: 72ch;
+            }
+
+            .about-info__text .btn {
+              margin-left: 100px;
+            }
+
+            .folio-list__item-pic img,
+            .modal-popup img {
+              width: 100%;
+              height: auto;
+              display: block;
+            }
+
+            .contact-links a {
+              overflow-wrap: anywhere;
+              word-break: break-word;
+            }
+
+            .text-huge-title {
+              font-size: clamp(3.2rem, 6vw, 8.8rem);
+              line-height: 1.15;
+            }
             /* Responsive styles */
             @media screen and (max-width: 1200px) {
               .work-progress__stats-number {
@@ -263,8 +288,13 @@
                 padding: 7.2rem 0;
               }
 
-              .work-progress__stats-box {
-                /* margin-bottom: 2rem; */
+              .about-intro-text,
+              .about-info__text .btn {
+                margin-left: 0;
+              }
+
+              .about-intro-text {
+                max-width: 100%;
               }
             }
 
@@ -290,6 +320,14 @@
               }
               .click-here-button{
                 display: block;
+              }
+
+              .text-huge-title {
+                line-height: 1.2;
+              }
+
+              .contact-bottom .contact-block {
+                margin-bottom: 2.4rem;
               }
             }
           </style>
