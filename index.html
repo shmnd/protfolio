@@ -29,14 +29,14 @@
     <link rel="manifest" href="site.webmanifest" />
   </head>
 
-  <body id="top">
+<body id="top" class="dark-mode">
     <!-- # preloader
     ================================================== -->
     <div id="preloader">
       <div id="loader"></div>
     </div>
 
-    <button
+    <!-- <button
       type="button"
       id="theme-toggle"
       class="theme-toggle"
@@ -44,7 +44,7 @@
       title="Switch to light mode"
     >
       <i class="bi bi-moon-fill" aria-hidden="true"></i>
-    </button>
+    </button> -->
 
     <!-- # page wrap
     ================================================== -->
@@ -77,6 +77,9 @@
               <li><a href="#works" class="smoothscroll">Works</a></li>
               <li><a href="#contact" class="smoothscroll">Say Hello</a></li>
             </ul>
+          <!-- <button id="theme-toggle" class="theme-toggle btn"
+            style="margin-left:auto; background:none; border:none; color:inherit; font-size:1rem; cursor:pointer;">Light
+            Mode</button> -->
           </nav>
         </div>
       </header>
@@ -179,10 +182,56 @@
 
           <style>
             /* Work Progress Section Styles */
-            .s-work-progress {
-              color: #ffffff;
+          :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --primary-color: #ff3e00;
+            /* example */
+          }
+
+          .dark-mode {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --primary-color: #ff3e00;
+          }
+
+          body {
+            background: var(--bg-color);
+            color: var(--text-color);
+          }
+
+          /* Ensure links inherit color */
+          a {
+            color: var(--primary-color);
+          }
+
+          /* Override other elements if needed */
+          .s-header,
+          .s-content,
+          .s-works,
+          .s-about,
+          .s-footer {
+            background: var(--bg-color);
+            color: var(--text-color);
+          }
+
+          /* Button styling */
+          .theme-toggle {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            border-radius: 4px;
+            padding: 0.4rem 0.8rem;
+          }
+
+          /* Additional dark mode tweaks */
+          .dark-mode .s-header {
+            background: #1e1e1e;
+          }
+
+          /* Existing CSS from line 166 onwards remains unchanged */
+              /* color: #ffffff;
               text-align: center;
-            }
+            } */
 
             .s-work-progress .section-header {
               margin-bottom: 4rem;
@@ -287,7 +336,7 @@
               line-height: 1.15;
             }
 
-            .theme-toggle {
+            /* .theme-toggle {
               --size: 5.2rem;
               position: fixed;
               top: 1.8rem;
@@ -295,8 +344,8 @@
               width: var(--size);
               height: var(--size);
               border: none;
-              border-radius: 50%;
-              background: #ffffff;
+              border-radius: 50%;ffffff
+              background: #;
               cursor: pointer;
               display: flex;
               align-items: center;
@@ -305,7 +354,7 @@
               box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
               transition: transform 0.25s ease, background-color 0.35s ease,
                 color 0.35s ease, box-shadow 0.35s ease;
-            }
+            } */
 
             .theme-toggle:hover {
               transform: translateY(-2px) scale(1.03);
@@ -318,8 +367,8 @@
             }
 
             body.dark-mode .theme-toggle {
-              background: #ffffff;
-              color: #111111;
+              background: #111111;
+              color: #ffffff;
             }
 
             body.dark-mode .theme-toggle i {
