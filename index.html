@@ -16,6 +16,10 @@
     ================================================== -->
     <link rel="stylesheet" href="css/vendor.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
 
     <!-- favicons
     ================================================== -->
@@ -31,6 +35,16 @@
     <div id="preloader">
       <div id="loader"></div>
     </div>
+
+    <button
+      type="button"
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Switch to light mode"
+      title="Switch to light mode"
+    >
+      <i class="bi bi-moon-fill" aria-hidden="true"></i>
+    </button>
 
     <!-- # page wrap
     ================================================== -->
@@ -272,6 +286,57 @@
               font-size: clamp(3.2rem, 6vw, 8.8rem);
               line-height: 1.15;
             }
+
+            .theme-toggle {
+              --size: 5.2rem;
+              position: fixed;
+              top: 1.8rem;
+              right: 1.8rem;
+              width: var(--size);
+              height: var(--size);
+              border: none;
+              border-radius: 50%;
+              background: #ffffff;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 1100;
+              box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+              transition: transform 0.25s ease, background-color 0.35s ease,
+                color 0.35s ease, box-shadow 0.35s ease;
+            }
+
+            .theme-toggle:hover {
+              transform: translateY(-2px) scale(1.03);
+            }
+
+            .theme-toggle i {
+              font-size: 2.2rem;
+              line-height: 1;
+              transition: transform 0.45s ease, color 0.35s ease;
+            }
+
+            body.dark-mode .theme-toggle {
+              background: #ffffff;
+              color: #111111;
+            }
+
+            body.dark-mode .theme-toggle i {
+              color: #111111;
+              transform: rotate(0deg) scale(1);
+            }
+
+            body.light-mode .theme-toggle {
+              background: #111111;
+              color: #ffffff;
+              box-shadow: 0 8px 22px rgba(17, 24, 39, 0.35);
+            }
+
+            body.light-mode .theme-toggle i {
+              color: #ffffff;
+              transform: rotate(180deg) scale(0.95);
+            }
             /* Responsive styles */
             @media screen and (max-width: 1200px) {
               .work-progress__stats-number {
@@ -328,6 +393,16 @@
 
               .contact-bottom .contact-block {
                 margin-bottom: 2.4rem;
+              }
+
+              .theme-toggle {
+                --size: 4.6rem;
+                top: 1.2rem;
+                right: 1.2rem;
+              }
+
+              .theme-toggle i {
+                font-size: 2rem;
               }
             }
           </style>
@@ -1028,9 +1103,9 @@
           <!-- end contact-top -->
 
           <div class="row contact-bottom">
-            <div class="column lg-3 md-5 tab-6 stack-on-550 contact-block">
+            <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
               <h3 class="text-pretitle">Reach me at</h3>
-              <p class="contact-links">
+              <p class="contact-links"> 
                 <a
                   href="mailto:hamzashamnad123@gmail.com"
                   class="mailtoui mail-section"
@@ -1101,5 +1176,33 @@
     ================================================== -->
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      (function () {
+        var storageKey = "portfolio-theme";
+        var body = document.body;
+        var toggleBtn = document.getElementById("theme-toggle");
+
+        if (!toggleBtn) return;
+
+        function applyTheme(mode) {
+          body.classList.remove("dark-mode", "light-mode");
+          body.classList.add(mode);
+          var next = mode === "dark-mode" ? "light" : "dark";
+          toggleBtn.setAttribute("aria-label", "Switch to " + next + " mode");
+          toggleBtn.setAttribute("title", "Switch to " + next + " mode");
+        }
+
+        var saved = localStorage.getItem(storageKey);
+        applyTheme(saved === "light-mode" ? "light-mode" : "dark-mode");
+
+        toggleBtn.addEventListener("click", function () {
+          var nextMode = body.classList.contains("dark-mode")
+            ? "light-mode"
+            : "dark-mode";
+          applyTheme(nextMode);
+          localStorage.setItem(storageKey, nextMode);
+        });
+      })();
+    </script>
   </body>
 </html>
