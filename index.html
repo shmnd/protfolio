@@ -4,9 +4,52 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8" />
-    <title>SHAMNAD</title>
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shamnad | Python Django Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Shamnad is a Python Django Full-Stack Developer building scalable web apps, RESTful APIs, and modern frontends. Explore projects, experience, and get in touch."
+    />
+    <meta
+      name="keywords"
+      content="Shamnad, Shamnad P, Python Developer, Django Developer, Full-Stack Developer, REST API, Backend Developer, PostgreSQL, AWS, Web Development, Kerala"
+    />
+    <meta name="author" content="Shamnad P" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#121212" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Update this base URL to your live domain after deploy -->
+    <link rel="canonical" href="https://shmnd.github.io/protfolio/" />
+    <link rel="alternate" hreflang="en" href="https://shmnd.github.io/protfolio/" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://shmnd.github.io/protfolio/sitemap.xml" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Shamnad Portfolio" />
+    <meta property="og:url" content="https://shmnd.github.io/protfolio/" />
+    <meta property="og:title" content="Shamnad | Python Django Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Python Django Full-Stack Developer specializing in end-to-end web development, RESTful APIs, and modern frontend technologies."
+    />
+    <meta property="og:image" content="https://shmnd.github.io/protfolio/android-chrome-512x512.png" />
+    <meta property="og:image:alt" content="Shamnad — Python Django Full-Stack Developer" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shamnad | Python Django Full-Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Python Django Full-Stack Developer specializing in end-to-end web development, RESTful APIs, and modern frontend technologies."
+    />
+    <meta name="twitter:image" content="https://shmnd.github.io/protfolio/android-chrome-512x512.png" />
+    <meta name="twitter:image:alt" content="Shamnad — Python Django Full-Stack Developer" />
 
     <!-- mobile specific metas
     ================================================== -->
@@ -14,6 +57,7 @@
 
     <!-- CSS
     ================================================== -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="stylesheet" href="css/vendor.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <link
@@ -27,6 +71,70 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="manifest" href="site.webmanifest" />
+
+    <!-- Structured data
+    ================================================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://shmnd.github.io/protfolio/#website",
+            "url": "https://shmnd.github.io/protfolio/",
+            "name": "Shamnad Portfolio",
+            "description": "Portfolio of Shamnad, a Python Django Full-Stack Developer.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://shmnd.github.io/protfolio/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://shmnd.github.io/protfolio/#person",
+            "name": "Shamnad P",
+            "url": "https://shmnd.github.io/protfolio/",
+            "image": "https://shmnd.github.io/protfolio/android-chrome-512x512.png",
+            "email": "mailto:hamzashamnad123@gmail.com",
+            "telephone": "+91-7559945671",
+            "jobTitle": "Python Django Full-Stack Developer",
+            "description": "Python Django Full-Stack Developer specializing in scalable web applications, RESTful APIs, and modern frontends.",
+            "knowsAbout": [
+              "Python",
+              "Django",
+              "REST APIs",
+              "JavaScript",
+              "HTML",
+              "CSS",
+              "PostgreSQL",
+              "MySQL",
+              "AWS",
+              "Git"
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/shamnad-p-5803132aa/",
+              "https://github.com/shmnd"
+            ],
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "MIC Arts and Science College"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Medico apps Solution"
+            }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://shmnd.github.io/protfolio/#profilepage",
+            "url": "https://shmnd.github.io/protfolio/",
+            "name": "Shamnad | Python Django Full-Stack Developer",
+            "isPartOf": { "@id": "https://shmnd.github.io/protfolio/#website" },
+            "about": { "@id": "https://shmnd.github.io/protfolio/#person" },
+            "mainEntity": { "@id": "https://shmnd.github.io/protfolio/#person" },
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
   </head>
 
 <body id="top" class="dark-mode">
@@ -68,7 +176,7 @@
         </div>
 
         <div class="row wide main-nav-wrap">
-          <nav class="column lg-12 main-nav">
+          <nav class="column lg-12 main-nav" aria-label="Primary">
             <ul>
               <li class="current">
                 <a href="#intro" class="smoothscroll">Intro</a>
@@ -147,8 +255,10 @@
               <a
                 href="cv/shamnad.pdf"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="btn btn--medium u-fullwidth"
                 data-animate-el
+                aria-label="Download Shamnad CV as PDF"
               >
                 Download CV
               </a>
@@ -592,8 +702,11 @@
                     <div class="folio-list__item-pic">
                       <img
                         src="images/portfolio/gem_cms.png"
-                       
-                        alt=""
+                        alt="Gem Advertising CMS project screenshot"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <button class="click-here-button">Click Here</button>
@@ -633,8 +746,11 @@
                     <div class="folio-list__item-pic">
                       <img
                         src="images/portfolio/ashwidea_api.png"
-                      
-                        alt=""
+                        alt="Ashwidea REST API project screenshot"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                       <button class="click-here-button">Click Here</button>
@@ -672,8 +788,11 @@
                     <div class="folio-list__item-pic">
                       <img
                         src="images/portfolio/shuk_api.png"
-                     
-                        alt=""
+                        alt="Shuk API documentation project screenshot"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
  <button class="click-here-button">Click Here</button>
@@ -711,8 +830,11 @@
                     <div class="folio-list__item-pic">
                       <img
                         src="images/portfolio/techo_trust_cms.png"
-                      
-                        alt=""
+                        alt="Techno Trust CMS project screenshot"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
  <button class="click-here-button">Click Here</button>
@@ -750,8 +872,11 @@
                     <div class="folio-list__item-pic">
                       <img
                         src="images/portfolio/earth_hood_api.png"
-                      
-                        alt=""
+                        alt="Earthood API project screenshot"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
  <button class="click-here-button">Click Here</button>
@@ -787,8 +912,11 @@
                     <div class="folio-list__item-pic">
                       <img
                         src="images/portfolio/echos_api.png"
-                     
-                        alt=""
+                        alt="Echos API project screenshot"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
  <button class="click-here-button">Click Here</button>
@@ -828,8 +956,11 @@
                     <div class="folio-list__item-pic">
                       <img
                         src="images/portfolio/gtg_cms.png"
-                     
-                        alt=""
+                        alt="Globe Textiles CMS project screenshot"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                       <button class="click-here-button">Click Here</button>
@@ -871,8 +1002,11 @@
                     <div class="folio-list__item-pic">
                       <img
                         src="images/portfolio/irm_api.png"
-                     
-                        alt=""
+                        alt="IRM Energy API project screenshot"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                       <button class="click-here-button">Click Here</button>
@@ -917,7 +1051,7 @@
                     -------------------------------------------- -->
             <div id="modal-01" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/gem_cms.png" alt="" />
+                <img src="images/portfolio/gem_cms.png" alt="Gem Advertising website project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>Gem advertising Website</h5>
@@ -940,7 +1074,7 @@
             </div>
              <div id="modal-02" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/gem_cms.png" alt="" />
+                <img src="images/portfolio/gem_cms.png" alt="Gem Advertising website project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>Gem advertising Website</h5>
@@ -964,7 +1098,7 @@
             <!-- end modal -->
             <div id="modal-03" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/ashwidea_api.png" alt="" />
+                <img src="images/portfolio/ashwidea_api.png" alt="Ashwidea API project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>Ashwidea</h5>
@@ -988,7 +1122,7 @@
             <!-- end modal -->
             <div id="modal-04" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/shuk_api.png" alt="" />
+                <img src="images/portfolio/shuk_api.png" alt="Shuk API project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>Shuk</h5>
@@ -1012,7 +1146,7 @@
             <!-- end modal -->
             <div id="modal-05" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/techo_trust_cms.png" alt="" />
+                <img src="images/portfolio/techo_trust_cms.png" alt="Techno Trust CMS project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>Techno Trust</h5>
@@ -1036,7 +1170,7 @@
             <!-- end modal -->
             <div id="modal-06" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/earth_hood_api.png" alt="" />
+                <img src="images/portfolio/earth_hood_api.png" alt="Earthood API project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>Earthood</h5>
@@ -1060,7 +1194,7 @@
             <!-- end modal -->
             <div id="modal-07" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/echos_api.png" alt="" />
+                <img src="images/portfolio/echos_api.png" alt="Echos API project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>Echos</h5>
@@ -1084,7 +1218,7 @@
             <!-- end modal -->
             <div id="modal-08" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/gtg_cms.png" alt="" />
+                <img src="images/portfolio/gtg_cms.png" alt="Globe Textiles CMS project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>Globe Textiles</h5>
@@ -1108,7 +1242,7 @@
 
             <div id="modal-09" hidden>
               <div class="modal-popup">
-                <img src="images/portfolio/irm_api.png" alt="" />
+                <img src="images/portfolio/irm_api.png" alt="IRM Energy API project detail" />
 
                 <div class="modal-popup__desc">
                   <h5>IRM Energy</h5>
@@ -1169,12 +1303,20 @@
               <h3 class="text-pretitle">Social</h3>
               <ul class="contact-social">
                 <li>
-                  <a href="https://www.linkedin.com/in/shamnad-p-5803132aa/"
-                    >Linked In</a
+                  <a
+                    href="https://www.linkedin.com/in/shamnad-p-5803132aa/"
+                    target="_blank"
+                    rel="noopener noreferrer me"
+                    >LinkedIn</a
                   >
                 </li>
                 <li>
-                  <a href="https://github.com/shmnd">Github</a>
+                  <a
+                    href="https://github.com/shmnd"
+                    target="_blank"
+                    rel="noopener noreferrer me"
+                    >GitHub</a
+                  >
                 </li>
               </ul>
             </div>

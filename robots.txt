@@ -1,0 +1,12 @@
+# https://shmnd.github.io/protfolio/robots.txt
+# Update the Sitemap URL if you deploy to a custom domain.
+
+User-agent: *
+Allow: /
+
+Disallow: /styles.html
+Disallow: /cv/
+Disallow: /.cursor/
+Disallow: /.git/
+
+Sitemap: https://shmnd.github.io/protfolio/sitemap.xml
