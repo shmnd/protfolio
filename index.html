@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>White Mood · 3D Experience</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient background layers -->
+  <div class="bg">
+    <div class="bg-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <canvas id="particles"></canvas>
+  </div>
+
+  <!-- Floating 3D cubes -->
+  <div class="scene scene-back">
+    <div class="cube cube-lg spin-slow">
+      <span class="face f-front"></span><span class="face f-back"></span>
+      <span class="face f-left"></span><span class="face f-right"></span>
+      <span class="face f-top"></span><span class="face f-bottom"></span>
+    </div>
+    <div class="cube cube-sm spin-fast float-a">
+      <span class="face f-front"></span><span class="face f-back"></span>
+      <span class="face f-left"></span><span class="face f-right"></span>
+      <span class="face f-top"></span><span class="face f-bottom"></span>
+    </div>
+    <div class="cube cube-xs spin-mid float-b">
+      <span class="face f-front glass"></span><span class="face f-back glass"></span>
+      <span class="face f-left glass"></span><span class="face f-right glass"></span>
+      <span class="face f-top glass"></span><span class="face f-bottom glass"></span>
+    </div>
+  </div>
+
+  <main class="wrap" id="tiltWrap">
+
+    <!-- Hero card: the white mood -->
+    <section class="hero card-3d" id="heroCard">
+      <div class="hero-inner">
+        <p class="eyebrow">WHITE&nbsp;MOOD</p>
+        <h1 class="title-3d">Pure&nbsp;White<span class="dot">.</span></h1>
+        <p class="subtitle">A calm, luminous 3D atmosphere — soft light, gentle depth, zero noise.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" id="pulseBtn">Feel the Light</button>
+          <button class="btn btn-ghost">Explore</button>
+        </div>
+      </div>
+
+      <!-- Rotating centerpiece cube -->
+      <div class="scene scene-hero">
+        <div class="cube cube-hero spin-hero">
+          <span class="face f-front shine"></span><span class="face f-back shine"></span>
+          <span class="face f-left shine"></span><span class="face f-right shine"></span>
+          <span class="face f-top shine"></span><span class="face f-bottom shine"></span>
+        </div>
+        <div class="cube-shadow"></div>
+      </div>
+    </section>
+
+    <!-- Mood tiles with 3D hover -->
+    <section class="tiles">
+      <article class="tile card-3d">
+        <div class="tile-icon">◈</div>
+        <h3>Snow</h3>
+        <p>Crisp #FFFFFF stillness.</p>
+      </article>
+      <article class="tile card-3d">
+        <div class="tile-icon">◎</div>
+        <h3>Mist</h3>
+        <p>Soft layered translucency.</p>
+      </article>
+      <article class="tile card-3d">
+        <div class="tile-icon">✦</div>
+        <h3>Shine</h3>
+        <p>Light sweeping across surfaces.</p>
+      </article>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
