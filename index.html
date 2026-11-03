@@ -3,84 +3,180 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>White Mood · 3D Experience</title>
+<title>Pip &amp; Snowy · A Simple 3D Cartoon World</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Ambient background layers -->
+  <!-- Soft sky background -->
   <div class="bg">
     <div class="bg-gradient"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <canvas id="particles"></canvas>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <canvas id="confetti"></canvas>
   </div>
 
-  <!-- Floating 3D cubes -->
-  <div class="scene scene-back">
-    <div class="cube cube-lg spin-slow">
-      <span class="face f-front"></span><span class="face f-back"></span>
-      <span class="face f-left"></span><span class="face f-right"></span>
-      <span class="face f-top"></span><span class="face f-bottom"></span>
-    </div>
-    <div class="cube cube-sm spin-fast float-a">
-      <span class="face f-front"></span><span class="face f-back"></span>
-      <span class="face f-left"></span><span class="face f-right"></span>
-      <span class="face f-top"></span><span class="face f-bottom"></span>
-    </div>
-    <div class="cube cube-xs spin-mid float-b">
-      <span class="face f-front glass"></span><span class="face f-back glass"></span>
-      <span class="face f-left glass"></span><span class="face f-right glass"></span>
-      <span class="face f-top glass"></span><span class="face f-bottom glass"></span>
-    </div>
-  </div>
+  <!-- ===== Header ===== -->
+  <header class="site-head tilt-wrap">
+    <a class="logo" href="#">
+      <!-- Mini bee logo -->
+      <svg viewBox="0 0 60 60" class="logo-bee" aria-hidden="true">
+        <ellipse cx="30" cy="34" rx="16" ry="13" fill="#f6c445"/>
+        <rect x="18" y="28" width="24" height="5" rx="2.5" fill="#3b3b3b"/>
+        <rect x="20" y="37" width="20" height="5" rx="2.5" fill="#3b3b3b"/>
+        <ellipse cx="22" cy="20" rx="8" ry="6" fill="#bfe3ff" transform="rotate(-25 22 20)"/>
+        <ellipse cx="38" cy="20" rx="8" ry="6" fill="#bfe3ff" transform="rotate(25 38 20)"/>
+        <circle cx="25" cy="32" r="2" fill="#fff"/>
+        <circle cx="35" cy="32" r="2" fill="#fff"/>
+      </svg>
+      <span>Pip&rsquo;s World</span>
+    </a>
+    <nav>
+      <a href="#friends">Friends</a>
+      <a href="#fun">Fun</a>
+      <a href="#say-hello">Say&nbsp;Hello</a>
+    </nav>
+  </header>
 
-  <main class="wrap" id="tiltWrap">
+  <!-- ===== Hero ===== -->
+  <main>
+  <section class="hero tilt-wrap" id="tilt-card">
+    <div class="hero-text">
+      <h1 class="pop-title">Hi! I&rsquo;m <span class="name">Pip</span> 🐝</h1>
+      <p class="sub">A tiny cartoon bee living in a simple little 3D world.
+         Poke me, spin my cube friend, and say hello!</p>
+      <div class="btn-row">
+        <button class="btn btn-main" id="poke-btn">Poke Pip!</button>
+        <a class="btn btn-ghost" href="#friends">Meet the crew</a>
+      </div>
+      <p class="hint">✨ Move your mouse — everything tilts!</p>
+    </div>
 
-    <!-- Hero card: the white mood -->
-    <section class="hero card-3d" id="heroCard">
-      <div class="hero-inner">
-        <p class="eyebrow">WHITE&nbsp;MOOD</p>
-        <h1 class="title-3d">Pure&nbsp;White<span class="dot">.</span></h1>
-        <p class="subtitle">A calm, luminous 3D atmosphere — soft light, gentle depth, zero noise.</p>
-        <div class="cta-row">
-          <button class="btn btn-primary" id="pulseBtn">Feel the Light</button>
-          <button class="btn btn-ghost">Explore</button>
+    <!-- The character: cute bee built from CSS shapes -->
+    <div class="hero-stage">
+      <div class="ground-shadow"></div>
+      <div class="bee bob" id="bee">
+        <div class="wing wing-l"></div>
+        <div class="wing wing-r"></div>
+        <div class="body">
+          <div class="stripe s1"></div>
+          <div class="stripe s2"></div>
+          <div class="stripe s3"></div>
+          <div class="antenna a-l"><i></i></div>
+          <div class="antenna a-r"><i></i></div>
+          <div class="eye eye-l"><b></b></div>
+          <div class="eye eye-r"><b></b></div>
+          <div class="cheek c-l"></div>
+          <div class="cheek c-r"></div>
+          <div class="mouth"></div>
+        </div>
+        <div class="sting"></div>
+      </div>
+
+      <!-- Floating 3D cube companion -->
+      <div class="scene cube-scene">
+        <div class="cube" id="cube3d">
+          <span class="face f-front">★</span>
+          <span class="face f-back">☁</span>
+          <span class="face f-left">♥</span>
+          <span class="face f-right">☀</span>
+          <span class="face f-top">♪</span>
+          <span class="face f-bottom">✿</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Friends (3D flip cards) ===== -->
+  <section class="band" id="friends">
+    <h2 class="sec-title tilt-wrap">Meet the Friends</h2>
+    <div class="cards">
+
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-face front face-cloud">
+            <svg viewBox="0 0 100 80">
+              <ellipse cx="50" cy="48" rx="30" ry="18" fill="#fff"/>
+              <circle cx="34" cy="40" r="14" fill="#fff"/>
+              <circle cx="62" cy="38" r="16" fill="#fff"/>
+              <circle cx="42" cy="48" r="4" fill="#3b3b3b"/>
+              <circle cx="58" cy="48" r="4" fill="#3b3b3b"/>
+              <path d="M45 57 Q50 62 55 57" stroke="#3b3b3b" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <circle cx="35" cy="55" r="4" fill="#ffb6c1" opacity=".8"/>
+              <circle cx="65" cy="55" r="4" fill="#ffb6c1" opacity=".8"/>
+            </svg>
+            <h3>Cloudy</h3>
+          </div>
+          <div class="flip-face back">
+            <p>Floats all day, naps all night. Pip&rsquo;s softest pal.</p>
+          </div>
         </div>
       </div>
 
-      <!-- Rotating centerpiece cube -->
-      <div class="scene scene-hero">
-        <div class="cube cube-hero spin-hero">
-          <span class="face f-front shine"></span><span class="face f-back shine"></span>
-          <span class="face f-left shine"></span><span class="face f-right shine"></span>
-          <span class="face f-top shine"></span><span class="face f-bottom shine"></span>
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-face front face-star">
+            <svg viewBox="0 0 100 80">
+              <path d="M50 8 L60 32 L86 34 L66 52 L73 78 L50 63 L27 78 L34 52 L14 34 L40 32 Z" fill="#ffd94a" stroke="#e8b83a" stroke-width="3" stroke-linejoin="round"/>
+              <circle cx="42" cy="40" r="3.5" fill="#3b3b3b"/>
+              <circle cx="58" cy="40" r="3.5" fill="#3b3b3b"/>
+              <path d="M44 48 Q50 54 56 48" stroke="#3b3b3b" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+            <h3>Twiggle</h3>
+          </div>
+          <div class="flip-face back">
+            <p>Spins like our cube — always twinkling, never sulking.</p>
+          </div>
         </div>
-        <div class="cube-shadow"></div>
       </div>
-    </section>
 
-    <!-- Mood tiles with 3D hover -->
-    <section class="tiles">
-      <article class="tile card-3d">
-        <div class="tile-icon">◈</div>
-        <h3>Snow</h3>
-        <p>Crisp #FFFFFF stillness.</p>
-      </article>
-      <article class="tile card-3d">
-        <div class="tile-icon">◎</div>
-        <h3>Mist</h3>
-        <p>Soft layered translucency.</p>
-      </article>
-      <article class="tile card-3d">
-        <div class="tile-icon">✦</div>
-        <h3>Shine</h3>
-        <p>Light sweeping across surfaces.</p>
-      </article>
-    </section>
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-face front face-frog">
+            <svg viewBox="0 0 100 80">
+              <ellipse cx="50" cy="52" rx="30" ry="20" fill="#8fd47a"/>
+              <circle cx="34" cy="32" r="11" fill="#8fd47a"/>
+              <circle cx="66" cy="32" r="11" fill="#8fd47a"/>
+              <circle cx="34" cy="31" r="5" fill="#fff"/><circle cx="34" cy="31" r="2.5" fill="#3b3b3b"/>
+              <circle cx="66" cy="31" r="5" fill="#fff"/><circle cx="66" cy="31" r="2.5" fill="#3b3b3b"/>
+              <path d="M38 55 Q50 64 62 55" stroke="#3b3b3b" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+            <h3>Hop</h3>
+          </div>
+          <div class="flip-face back">
+            <p>Three jumps to school, five to snack time. Ribbit!</p>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </section>
+
+  <!-- ===== Fun facts row ===== -->
+  <section class="band band-alt" id="fun">
+    <h2 class="sec-title tilt-wrap">Simple Little Facts</h2>
+    <div class="facts tilt-wrap" id="facts">
+      <div class="fact"><span class="fact-num">1</span><p>Pip flutters <strong>200 times</strong> per second.</p></div>
+      <div class="fact"><span class="fact-num">2</span><p>Cloudy is made of about <strong>1 million</strong> tiny droplets.</p></div>
+      <div class="fact"><span class="fact-num">3</span><p>The cube has <strong>6 faces</strong> and endless hugs.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== Say hello ===== -->
+  <section class="band" id="say-hello">
+    <h2 class="sec-title tilt-wrap">Say Hello 👋</h2>
+    <div class="hello tilt-wrap">
+      <input type="text" id="hello-input" placeholder="Type something cheerful…" maxlength="60"/>
+      <button class="btn btn-main" id="hello-btn">Send it!</button>
+      <p class="reply" id="hello-reply"></p>
+    </div>
+  </section>
   </main>
+
+  <footer>
+    Made with 🤍 by Pip &amp; Snowy — no pixels were harmed.
+  </footer>
 
   <script src="script.js"></script>
 </body>

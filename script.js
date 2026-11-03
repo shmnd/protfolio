@@ -1,87 +1,118 @@
-/* ===== White Mood · 3D interactions ===== */
+/* ===== Pip's World — cartoon interactions + 3D effects ===== */
 
-// ---------- Floating white particles (canvas) ----------
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let W, H, dots = [];
+// ---------- Mouse tilt on cards/sections ----------
+document.querySelectorAll('.tilt-wrap').forEach(el => {
+  el.addEventListener('mousemove', e => {
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.setProperty('--ry', (x * 10) + 'deg');
+    el.style.setProperty('--rx', (-y * 8) + 'deg');
+  });
+  el.addEventListener('mouseleave', () => {
+    el.style.setProperty('--ry', '0deg');
+    el.style.setProperty('--rx', '0deg');
+  });
+});
 
-function resize() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
+// ---------- Poke Pip! (3D spin + confetti) ----------
+const bee = document.getElementById('bee');
+const pokeBtn = document.getElementById('poke-btn');
+let pokes = 0;
+const reactions = ['Buzzzz! 🐝', 'Hehe, that tickles!', 'Wheee! ✨', 'Again! Again!', 'Pip is dizzy! 💫'];
+
+function pokePip() {
+  pokes++;
+  bee.classList.remove('bob', 'spinning');
+  void bee.offsetWidth; // restart animation
+  bee.classList.add('spinning');
+  burstConfetti();
+  const reply = document.getElementById('hello-reply');
+  if (reply) { reply.textContent = reactions[pokes % reactions.length];
+               reply.classList.remove('show'); void reply.offsetWidth; reply.classList.add('show'); }
 }
-window.addEventListener("resize", resize);
-resize();
+bee.addEventListener('click', pokePip);
+pokeBtn.addEventListener('click', pokePip);
+bee.addEventListener('animationend', e => {
+  if (e.animationName === 'bee-spin') { bee.classList.remove('spinning'); bee.classList.add('bob'); }
+});
 
-function makeDots(n = 60) {
-  dots = Array.from({ length: n }, () => ({
-    x: Math.random() * W,
-    y: Math.random() * H,
-    r: Math.random() * 2.4 + 0.8,          // size → fake depth
-    z: Math.random(),                       // depth 0..1
-    vx: (Math.random() - 0.5) * 0.25,
-    vy: -(Math.random() * 0.35 + 0.08),     // gentle rise like snow
-    a: Math.random() * Math.PI * 2,
-  }));
+// ---------- Drag-to-spin 3D cube ----------
+const cube = document.getElementById('cube3d');
+let dragging = false, lastX = 0, lastY = 0, rx = -15, ry = 0;
+
+cube.addEventListener('pointerdown', e => {
+  dragging = true; lastX = e.clientX; lastY = e.clientY;
+  cube.style.animationPlayState = 'paused';
+  cube.setPointerCapture(e.pointerId);
+});
+window.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  ry += (e.clientX - lastX) * 0.6;
+  rx -= (e.clientY - lastY) * 0.6;
+  lastX = e.clientX; lastY = e.clientY;
+  cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+});
+window.addEventListener('pointerup', () => {
+  if (!dragging) return;
+  dragging = false;
+  cube.style.transform = '';
+  cube.style.animationPlayState = 'running';
+});
+
+// ---------- Say hello ----------
+const helloBtn = document.getElementById('hello-btn');
+const helloInput = document.getElementById('hello-input');
+const helloReply = document.getElementById('hello-reply');
+function sendHello() {
+  const v = helloInput.value.trim();
+  helloReply.textContent = v ? `Pip says: "${v}" right back at you! 🐝💛` : 'Type something cheerful first!';
+  helloReply.classList.remove('show'); void helloReply.offsetWidth; helloReply.classList.add('show');
+  if (v) burstConfetti();
 }
-makeDots();
+helloBtn.addEventListener('click', sendHello);
+helloInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendHello(); });
 
-function draw(t) {
+// ---------- Gentle floating confetti canvas ----------
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+resize(); addEventListener('resize', resize);
+
+const COLORS = ['#ffd94a', '#ffb84d', '#bfe3ff', '#8fd47a', '#f2836b', '#fff'];
+const bits = Array.from({ length: 40 }, () => ({
+  x: Math.random() * innerWidth,
+  y: Math.random() * innerHeight,
+  s: 4 + Math.random() * 6,          // size = fake depth
+  vx: (Math.random() - .5) * .3,
+  vy: .2 + Math.random() * .6,
+  rot: Math.random() * Math.PI, vr: (Math.random() - .5) * .06,
+  c: COLORS[Math.floor(Math.random() * COLORS.length)],
+  burst: 0
+}));
+
+function burstConfetti() {
+  bits.forEach(b => {
+    b.x = innerWidth / 2 + (Math.random() - .5) * 200;
+    b.y = innerHeight / 3 + (Math.random() - .5) * 100;
+    b.vx = (Math.random() - .5) * 6;
+    b.vy = -2 - Math.random() * 4;
+    b.burst = 60;
+  });
+}
+
+(function loop() {
   ctx.clearRect(0, 0, W, H);
-  for (const d of dots) {
-    d.x += d.vx + Math.sin(t / 1400 + d.a) * 0.15 * d.z;
-    d.y += d.vy * (0.4 + d.z);              // nearer dots move faster (parallax)
-    if (d.y < -10) { d.y = H + 10; d.x = Math.random() * W; }
-    if (d.x < -10) d.x = W + 10;
-    if (d.x > W + 10) d.x = -10;
-
-    const alpha = 0.25 + d.z * 0.55;
-    const radius = d.r * (0.6 + d.z);
-    // soft glow sphere look
-    const g = ctx.createRadialGradient(d.x, d.y, 0, d.x, d.y, radius * 3);
-    g.addColorStop(0, `rgba(255,255,255,${alpha})`);
-    g.addColorStop(0.5, `rgba(240,244,250,${alpha * 0.5})`);
-    g.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = g;
-    ctx.beginPath();
-    ctx.arc(d.x, d.y, radius * 3, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  requestAnimationFrame(draw);
-}
-requestAnimationFrame(draw);
-
-// ---------- Mouse-driven 3D tilt on cards ----------
-const tiltCards = document.querySelectorAll(".card-3d");
-
-tiltCards.forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 .. 0.5
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-    const rx = (-py * 10).toFixed(2);  // rotateX
-    const ry = (px * 12).toFixed(2);   // rotateY
-    card.style.transform =
-      `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(12px)`;
+  bits.forEach(b => {
+    b.x += b.vx; b.y += b.vy; b.rot += b.vr;
+    if (b.burst > 0) { b.burst--; b.vy += 0.12; }      // gravity during bursts
+    if (b.y > H + 20) { b.y = -20; b.x = Math.random() * W; b.vx = (Math.random()-.5)*.3; b.vy = .2+Math.random()*.6; }
+    ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.rot);
+    ctx.globalAlpha = .5 + b.s / 15;                    // nearer = more opaque
+    ctx.fillStyle = b.c;
+    ctx.fillRect(-b.s/2, -b.s/2, b.s, b.s * .7);
+    ctx.restore();
   });
-  card.addEventListener("mouseleave", () => {
-    card.style.transition = "transform .6s cubic-bezier(.2,.8,.2,1)";
-    card.style.transform = "perspective(900px) rotateX(0) rotateY(0) translateZ(0)";
-    setTimeout(() => (card.style.transition = ""), 600);
-  });
-});
-
-// ---------- Subtle background parallax with mouse ----------
-const sceneBack = document.querySelector(".scene-back");
-window.addEventListener("mousemove", (e) => {
-  const nx = e.clientX / window.innerWidth - 0.5;
-  const ny = e.clientY / window.innerHeight - 0.5;
-  sceneBack.style.transform = `translate3d(${nx * -25}px, ${ny * -25}px, 0)`;
-});
-
-// ---------- Pulse button effect ----------
-const pulseBtn = document.getElementById("pulseBtn");
-pulseBtn.addEventListener("click", () => {
-  pulseBtn.classList.remove("pulse");
-  void pulseBtn.offsetWidth; // restart animation
-  pulseBtn.classList.add("pulse");
-});
+  requestAnimationFrame(loop);
+})();
